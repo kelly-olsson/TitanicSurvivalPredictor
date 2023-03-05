@@ -3,7 +3,6 @@ from django.http import Http404
 from django.urls import reverse
 from django.views.generic import TemplateView
 import pickle
-import sklearn # You must perform a pip install.
 import pandas as pd
 
 
