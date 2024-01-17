@@ -1,10 +1,21 @@
-<!-- templates/home.html -->
+<!-- templates/results.html -->
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container">
   <h1>Results page</h1>
-  You entered the following information:<br/>
-  Years work experience: {{choice}}<br/>
-  GMAT Score: {{gmat}}
-  Prediction: {{prediction}}
+
+<div class="results-container">
+      You entered the following information:<br/>
+      <ul>
+      <li>Ticket Class: {{ticket}}</li>
+      <li>Passenger Gender: {% if gender == 0 %}Male{% else %}Female{% endif %}</li>
+      <li>Passenger Age: {{age}}</li>
+      <li>Passenger Fare: {{fare}}</li>
+    </ul>
+      <p>Prediction: <span class="prediction">{% if prediction == 0 %}You did not survive{% else %}You survived!{% endif %}</span></p>
+    </div>
+
+    <a href="/" class="back-button">Go Back to Passenger Creation</a>
+</div>
 {% endblock content %}

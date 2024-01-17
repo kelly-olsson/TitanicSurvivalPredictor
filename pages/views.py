@@ -9,68 +9,69 @@ import pandas as pd
 
 def homePageView(request):
     # return request object and specify page.
-    return render(request, 'home.html', {
-        'mynumbers':[1,2,3,4,5,6,],
-        'firstName': 'Kelly',
-        'lastName': 'Olsson'})
-
-
-def aboutPageView(request):
-    # return request object and specify page.
-    return render(request, 'about.html')
-
-
-def kellyPageView(request):
-    # return request object and specify page.
-    return render(request, 'kelly.html')
+    return render(request, 'home.html')
 
 
 def homePost(request):
     # Use request object to extract choice.
 
-    choice = -999
-    gmat = -999
+    ticket = -999
+    gender = -999
+    age = -999
+    fare = -999
 
     try:
         # Extract value from request object by control name.
-        currentChoice = request.POST['choice']
-        gmatStr = request.POST['gmat']
+        currentTicket = request.POST['ticket_class']
+        currentGender = request.POST['gender']
+        currentAge = request.POST['passenger_age']
+        currentFare = request.POST['passenger_fare']
 
         # Crude debugging effort.
-        print("*** Years work experience: " + str(currentChoice))
-        choice = int(currentChoice)
-        gmat = float(gmatStr)
+        ticket = int(currentTicket)
+        gender = int(currentGender)
+        age = int(currentAge)
+        fare = float(currentFare)
+        print("*** Ticket Class: " + str(ticket))
+        print("*** Passenger Gender: " + ("Female" if gender == 1 else "Male"))
+        print("*** Passenger Age: " + str(age))
+        print("*** Passenger Fare: " + str(fare))
     # Enters 'except' block if integer cannot be created.
     except:
         return render(request, 'home.html', {
-            'errorMessage': '*** The data submitted is invalid. Please try again.',
-            'mynumbers': [1, 2, 3, 4, 5, 6, ]})
+            'errorMessage': '*** The data submitted is invalid. Please try again.'})
     else:
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('results', kwargs={'choice': choice, 'gmat': gmat}, ))
+        return HttpResponseRedirect(reverse('results', kwargs={'ticket': ticket, 'gender': gender, 'age': age, 'fare': fare}, ))
 
 
-def results(request, choice, gmat):
+def results(request, ticket, gender, age, fare):
     print("*** Inside reults()")
     # load saved model
-    with open('./model_pkl' , 'rb') as f:
+    with open('/home/kolssonbcit/helloworld/static/model_pkl', 'rb') as f:
         loadedModel = pickle.load(f)
+    with open('/home/kolssonbcit/helloworld/static/sc_x.pkl', 'rb') as f2:
+        scaler = pickle.load(f2)
 
     # Create a single prediction.
-    singleSampleDf = pd.DataFrame(columns=['gmat', 'work_experience'])
+    singleSampleDf = pd.DataFrame(columns=['Pclass', 'Sex', 'Fare'])
 
-    workExperience = float(choice)
-    print("*** GMAT Score: " + str(gmat))
-    print("*** Years experience: " + str(workExperience))
-    singleSampleDf = singleSampleDf.append({'gmat':gmat,
-                                            'work_experience':workExperience},
-                                        ignore_index=True)
+    currentFare = float(fare)
+    print("*** Ticket Class: " + str(ticket))
+    print("*** Passenger Gender: " + ("Female" if gender == 1 else "Male"))
+    print("*** Passenger Age: " + str(age))
+    print("*** Passenger Fare: " + str(currentFare))
+    singleSampleDf = singleSampleDf.append({'Pclass':ticket, 'Sex':gender, 'Age':age, 'Fare':currentFare},
+                                           ignore_index=True)
 
-    singlePrediction = loadedModel.predict(singleSampleDf)
+    singleSampleDf_scaled = scaler.transform(singleSampleDf)
+
+    singlePrediction = loadedModel.predict(singleSampleDf_scaled)
 
     print("Single prediction: " + str(singlePrediction))
 
-    return render(request, 'results.html', {'choice': workExperience, 'gmat':gmat,
-                'prediction':singlePrediction})
+    return render(request, 'results.html', {'ticket': ticket, 'gender': gender, 'age': age, 'fare': fare,
+                                            'prediction': singlePrediction})
+
