@@ -27,7 +27,7 @@ Dataset Source: [Kaggle Titanic Dataset](https://www.kaggle.com/competitions/tit
 - **Modeling**: Logistic regression, optimized with GridSearchCV for hyperparameter tuning and cross-validation, is employed for prediction.
 
 ## Visualizations
-The project includes several visualizations:
+The project includes several visualizations (see code [here](visualizations/data_visualizations.py)):
 - Correlation Heatmaps
 - Survival Rates by Class (Bar Plot)
 - Age-wise Distribution of Survivors (Histogram)
