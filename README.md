@@ -1,4 +1,4 @@
-# Titanic Survival Predictor
+# Would You Survive the Titanic?
 
 ## Introduction
 This project applies machine learning techniques to predict survival on the Titanic. It leverages logistic regression, a robust method for binary classification, to analyze historical passenger data and predict survival outcomes.
