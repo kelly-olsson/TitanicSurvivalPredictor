@@ -34,7 +34,7 @@ The project includes several visualizations:
 - Gender-based Survival Comparison (Bar Plot)
 - Fare vs. Survival (Box Plot)
 
-[Exploratory Data Analysis Presentation + Demo Here](https://youtu.be/z1ShwfPWH-A?si=BqfHZ5f8fNpUCVZ7)
+[Exploratory Data Analysis Presentation + Demo](https://youtu.be/z1ShwfPWH-A?si=BqfHZ5f8fNpUCVZ7)
 
 ## Results
 Key findings from the model include the significant impact of passenger class, gender, and fare on survival probabilities. The model demonstrates a balanced accuracy with precision and recall metrics.
