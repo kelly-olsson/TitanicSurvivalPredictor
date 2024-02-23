@@ -21,3 +21,6 @@ local_settings.py
 /model_training/model_train.ipynb
 /model_training/sc_x.pkl
 /model_training/model_pkl
+
+# Ignore changes to visualizations notebook
+/visualizations/visualizations.ipynb
