@@ -26,6 +26,8 @@ Dataset Source: [Kaggle Titanic Dataset](https://www.kaggle.com/competitions/tit
 - **Feature Selection**: Employed SelectKBest and mutual_info_classif for identifying significant features.
 - **Modeling**: Logistic regression, optimized with GridSearchCV for hyperparameter tuning and cross-validation, is employed for prediction.
 
+Detailed methodology and training steps can be found in the [model training notebook](train/model_train.ipynb).
+
 ## Visualizations
 The project includes several visualizations (see code [here](visualizations/data_visualizations.py)):
 - Correlation Heatmaps
