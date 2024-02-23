@@ -16,3 +16,8 @@ local_settings.py
 
 # VS Code #
 .vscode/
+
+# Training Data
+/model_training/model_train.ipynb
+/model_training/sc_x.pkl
+/model_training/model_pkl
