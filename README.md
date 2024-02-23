@@ -29,7 +29,7 @@ Dataset Source: [Kaggle Titanic Dataset](https://www.kaggle.com/competitions/tit
 Detailed methodology and training steps can be found in the [model training notebook](train/model_train.ipynb).
 
 ## Visualizations
-The project includes several visualizations (see code [here](visualizations/data_visualizations.py)):
+The project includes several visualizations (see code [here](visualizations/visualizations.ipynb)):
 - Correlation Heatmaps
 - Survival Rates by Class (Bar Plot)
 - Age-wise Distribution of Survivors (Histogram)
